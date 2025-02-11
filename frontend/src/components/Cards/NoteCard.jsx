@@ -1,13 +1,13 @@
 import React from 'react'
 import {MdCreate, MdDelete, MdOutlinePushPin} from "react-icons/md"
 
-function NoteCard({isPinned ,onPinNote, content, onEdit}) {
+function NoteCard({title, date, content,tags,isPinned ,onPinNote,  onEdit, onDelete}) {
   return (
-    <div>
+    <div className='border rounded p-4 bg-white hover:shadow-xl transition-all'>
         <div className='flex items-center justify-between'>
             <div >
-                <h6 className='text-sm font-medium'>Wape up at 6 a.m</h6>
-                <span className='text-sm text-green-700'>12th jun, 2024</span>
+                <h6 className='text-sm font-medium'>{title}</h6>
+                <span className='text-xs text-green-700'>{date}</span>
 
             </div>
             <div>
@@ -16,13 +16,13 @@ function NoteCard({isPinned ,onPinNote, content, onEdit}) {
                 } onClick={onPinNote}/>
             </div>
         </div>
-        <p className='text-xs text-slate-600 mt-2 '> {content?.slice(0,60)} Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur tempore eveniet blanditiis ad ipsam repellendus quaerat libero laudantium dolor dolorem assumenda eum quibusdam delectus, deserunt, excepturi voluptatibus facere repellat soluta? </p>
+        <p className='text-xs text-slate-600 mt-2 '> {content?.slice(0,60)} </p>
 
         <div className='flex items-center justify-between mt-2'>
-            <div className='text-xs text-slate-500 '>#tags </div>
+            <div className='text-xs text-slate-500 '>{tags}</div>
             <div className='flex items-center gap-8'>
                 <MdCreate className='icon-btn hover:text-green-600' onClick={onEdit} />
-                <MdDelete />
+                <MdDelete className='icon-btn hover:text-red-500 ' onClick={onDelete}/>
             </div>
         </div>
     </div>

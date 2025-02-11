@@ -27,7 +27,7 @@
     }
   
     .input-label {
-      @apply text-sx text-slate-400
+      @apply text-xs text-slate-400
     }
 
   }
