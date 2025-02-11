@@ -78,11 +78,14 @@ function Home() {
         </div>
       </div>
 
-      <button className='w-16 h-16 flex items-center justify-center rounded-2xl bg-[#2B85FF] hover:bg-blue-600  bottom-10' onClick={()=>{
-        setopenAddEditModel({isShown: true, type: "add", data: null})
-      }}>
-        <MdAdd className='text-[32px] text-white'/>
-      </button>
+      <div className='flex items-center justify-end mr-12 mt-12'>
+        <button className='w-16 h-16 flex items-center justify-center rounded-2xl bg-[#2B85FF] hover:bg-blue-600  bottom-10' onClick={()=>{
+          setopenAddEditModel({isShown: true, type: "add", data: null})
+        }}>
+          <MdAdd className='text-[32px] text-white'/>
+        </button>
+      </div>
+
       <Model isOpen = {openAddEditModel.isShown} onRequestClose={()=> {}} style={{ overlay: {
         backgroundColor: "rgba(0,0,0,0.2)",
       },

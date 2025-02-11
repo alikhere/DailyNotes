@@ -11,6 +11,7 @@ function AddEditNotes({onClose, noteData, type}) {
     const editNote = async () => {
 
     }
+
     const addNewNote = async () => {
 
     }
@@ -39,24 +40,27 @@ function AddEditNotes({onClose, noteData, type}) {
         <div  className='flex flex-col gap-2'>
             <label className='input-label text-red-400 uppercase '> Title</label>
             <input type="text" className=' text-2xl text-slate-950 outline-none '
-            placeholder='Wake up at 6 a.m '
+            placeholder='Enter title'
             value={title}
             onChange={(e)=> setTitle(e.target.value)}
             />
         </div>
         <div className='flex flex-col gap-2 mt-4'>
             <label className='input-label text-red-400 uppercase '>Content</label>
+
             <textarea type="text" className='text-sm text-slate-950 outline-none bg-slate-50 p-2 rounded '
-            placeholder='Content'
+            placeholder='Content...'
             value={content}
             onChange={({target})=> setConent(target.value)}>
-
             </textarea>
         </div>
         <div className='flex flex-col gap-2 mt-4'>
             <label className='input-label text-red-400 uppercase '>tags</label>
             <TagInput tags={tags} setTags={setTags}/>
         </div>
+
+        {error && <p className='text-red-500 text-xs pt-4'> {error}</p> }
+        
         <button className='btn-primary font-medium at-5 p-3 ' onClick={handleAddNote}>ADD</button>
     </div>
   )
