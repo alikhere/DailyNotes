@@ -19,11 +19,8 @@
 </div>
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/09bb279a-728b-49be-96aa-1ce25a5a21e3" width="60%"/>
-</div>
-
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/0399b682-8377-4cd6-9a90-1fef491b7c7f" width="60%"/>
+  <img src="https://github.com/user-attachments/assets/09bb279a-728b-49be-96aa-1ce25a5a21e3" width="45%"/>
+  <img src="https://github.com/user-attachments/assets/0399b682-8377-4cd6-9a90-1fef491b7c7f" width="45%"/>
 </div>
 
 ## 🛠️ Technologies Used  
