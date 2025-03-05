@@ -2,6 +2,7 @@ import express from "express"
 import mongoose from "mongoose"
 import dotevn from "dotenv"
 import cookieParser from "cookie-parser"
+import  cors from "cors"
 
 
 dotevn.config()
