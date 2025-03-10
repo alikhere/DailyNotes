@@ -30,3 +30,49 @@ export const addNote =  async(req, res, next) => {
         next(error)
     }
 }
+
+export const editNote = async(req, res, next) => {
+    const note = await Note.findById(req.params.noteId)
+
+    if(!note) {
+        return next(errorHandler(404, "Note not found"))
+    }
+
+    if(req.user.id != note.userId) {
+        return next(errorHandler(401, "You can only update your own note"))
+    }
+
+    const {title, content, tags, isPinned} = req.body
+
+    if(!title && !content && !tags) {
+        return next(errorHandler(404, "No changes provided"))
+    }
+
+    try {
+        if(title) {
+            note.title = title
+        }
+
+        if(content) {
+            note.content = content
+        }
+
+        if(tags) {
+            note.tags = tags
+        }
+
+        if(isPinned) {
+            note.isPinned = isPinned
+        }
+
+        await note.save()
+        res.status(200).json({
+            success: true,
+            message: "Note updated successfully",
+            note
+        })
+        
+    } catch (error) {
+        next(error)
+    }
+}
