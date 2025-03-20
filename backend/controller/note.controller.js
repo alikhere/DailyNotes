@@ -94,3 +94,52 @@ export const getAllNotes = async(req,res,next) => {
         
     }
 }
+
+export const deleteNote = async (req, res, next) => {
+    const noteId = req.params.noteId
+  
+    const note = await Note.findOne({ _id: noteId, userId: req.user.id })
+  
+    if (!note) {
+      return next(errorHandler(404, "Note not found"))
+    }
+  
+    try {
+      await Note.deleteOne({ _id: noteId, userId: req.user.id })
+  
+      res.status(200).json({
+        success: true,
+        message: "Note deleted successfully",
+      })
+    } catch (error) {
+      next(error)
+    }
+}
+
+  export const updateNotePinned = async (req, res, next) => {
+    try {
+      const note = await Note.findById(req.params.noteId)
+  
+      if (!note) {
+        return next(errorHandler(404, "Note not found!"))
+      }
+  
+      if (req.user.id !== note.userId) {
+        return next(errorHandler(401, "You can only update your own note!"))
+      }
+  
+      const { isPinned } = req.body
+  
+      note.isPinned = isPinned
+  
+      await note.save()
+  
+      res.status(200).json({
+        success: true,
+        message: "Note updated successfully",
+        note,
+      })
+    } catch (error) {
+      next(error)
+    }
+}
