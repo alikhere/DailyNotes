@@ -76,3 +76,21 @@ export const editNote = async(req, res, next) => {
         next(error)
     }
 }
+
+export const getAllNotes = async(req,res,next) => {
+    const userId = req.user.id 
+
+    try {
+        const  notes = await Note.find({userId: userId}).sort({isPinned: -1})
+
+        res.status(200).json({
+            success: true,
+            message: "All notes retrived successfully",
+            notes,
+        })
+        
+    } catch (error) {
+        next(error)
+        
+    }
+}
