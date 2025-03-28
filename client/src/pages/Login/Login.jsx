@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 import { signInFailure, signInStart, signInSuccess } from "../../redux/user/userSlice"
 import axios from "axios"
 import { toast } from "react-toastify"
-
+import PasswordInput from "../../components/Input/PasswordInput"
 const API_URL = import.meta.env.VITE_API_URL
 
 const Login = () => {
@@ -69,10 +69,7 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <input
-            type="password"
-            placeholder="Password"
-            className="input-box"
+          <PasswordInput
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
