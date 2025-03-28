@@ -1,16 +1,12 @@
 import React, { useState } from "react"
-import PasswordInput from "../../components/Input/PasswordInput"
 import { Link, useNavigate } from "react-router-dom"
 import { validateEmail } from "../../utils/helper"
 import { useDispatch } from "react-redux"
-const API_URL = import.meta.env.VITE_API_URL;
-import {
-  signInFailure,
-  signInStart,
-  signInSuccess,
-} from "../../redux/user/userSlice"
+import { signInFailure, signInStart, signInSuccess } from "../../redux/user/userSlice"
 import axios from "axios"
 import { toast } from "react-toastify"
+
+const API_URL = import.meta.env.VITE_API_URL
 
 const Login = () => {
   const [email, setEmail] = useState("")
@@ -35,8 +31,6 @@ const Login = () => {
 
     setError("")
 
-    // Login API
-
     try {
       dispatch(signInStart())
 
@@ -46,17 +40,17 @@ const Login = () => {
         { withCredentials: true }
       )
 
-      if (res.data.success === false) {
+      if (!res.data.success) {
         toast.error(res.data.message)
-        console.log(res.data)
-        dispatch(signInFailure(data.message))
+        dispatch(signInFailure(res.data.message))
+        return
       }
 
       toast.success(res.data.message)
       dispatch(signInSuccess(res.data))
       navigate("/")
     } catch (error) {
-      toast.error(error.message)
+      toast.error(error.response?.data?.message || "Login failed")
       dispatch(signInFailure(error.message))
     }
   }
@@ -75,23 +69,21 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <PasswordInput
+          <input
+            type="password"
+            placeholder="Password"
+            className="input-box"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
 
           {error && <p className="text-red-500 text-sm pb-1">{error}</p>}
 
-          <button type="submit" className="btn-primary">
-            LOGIN
-          </button>
+          <button type="submit" className="btn-primary">LOGIN</button>
 
           <p className="text-sm text-center mt-4">
             Not registered yet?{" "}
-            <Link
-              to={"/signup"}
-              className="font-medium text-[#2B85FF] underline"
-            >
+            <Link to={"/signup"} className="font-medium text-[#2B85FF] underline">
               Create an account
             </Link>
           </p>
