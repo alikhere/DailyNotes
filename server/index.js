@@ -21,8 +21,8 @@ const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
 //to make input as json
 app.use(express.json())
 app.use(cookieParser());
-app.use(cors({ origin: [CLIENT_URL], credentials: true}))
-app.listen(3000, ()=> {
+app.use(cors({ origin: CLIENT_URL, credentials: true}))
+app.listen(PORT, ()=> {
     console.log("Server is ruuning on PORT 3000")
 })
 
