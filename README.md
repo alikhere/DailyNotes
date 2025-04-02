@@ -1,7 +1,6 @@
 # 📝 DailyNotes
 
-**DailyNotes** is a modern, full-stack note-taking application built using the **MERN Stack (MongoDB, Express, React, Node.js)**. It offers a seamless experience for users to create, edit, delete, search, and pin important notes, ensuring an efficient and organized workflow.
-nt and organized workflow.  
+**DailyNotes** is a modern, full-stack note-taking application built using the **MERN Stack (MongoDB, Express, React, Node.js)**. It offers a seamless experience for users to create, edit, delete, search, and pin important notes, ensuring an efficient and organized workflow. 
 
 **Live Demo:** [DailyNotes Web Application](https://dailynotes-alikhere.vercel.app)
 
@@ -42,3 +41,13 @@ nt and organized workflow.
 | [**MongoDB**](https://www.mongodb.com/) | NoSQL database to store user data, notes, and tags.                                                |
 | [**JWT (JSON Web Tokens)**](https://jwt.io/) | Secure user authentication using token-based sessions.                                            |
 | [**Tailwind CSS**](https://tailwindcss.com/) | A utility-first CSS framework for rapid UI development.                                             |
+
+
+## Database Schema
+
+![Database Schema](./docs/db-schema.png)
+
+
+## CI/CD Pipeline
+
+![CI/CD Pipeline](./docs/ci-cd.png)
