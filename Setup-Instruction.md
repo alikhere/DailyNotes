@@ -32,7 +32,7 @@ This section provides instructions for setting up and running the project on a l
     ```
     Open the newly created .env file and provide values for the following:
    - MONGO_URI=your_mongodb_connection_string
-   - JWT_SECRET=your_jwt_secre
+   - JWT_SECRET=your_jwt_secret
   
     Start the backend server:
     ```sh

@@ -4,6 +4,13 @@
 
 **Live Demo:** [DailyNotes Web Application](https://dailynotes-alikhere.vercel.app)
 
+## Getting Started
+
+You can run the DailyNotes locally using either of the following methods:
+- [Setup Instructions](/Setup-Instruction.md)
+- [Docker Instructions](/Docker-Instruction.md)
+
+
 ## ✨  Key Features
 - **User Authentication**: Secure login and sign-up to manage notes individually.
 - **Create Notes**: Add new notes with an intuitive interface.
