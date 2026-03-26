@@ -2,33 +2,104 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
-    html {
-      font-family:sans-serif;
-    }
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  
-  body {
-    background-color: rgb(241,245,241);
-  }
-  
-  @layer components {
-    .input-box {
-      @apply w-full text-sm bg-transparent border-[1.5px] px-5 py-3 rounded mb-4 outline-none;
-    }
-  
-    .btn-primary {
-      @apply w-full text-sm bg-primary text-white p-2 rounded my-1 hover:bg-blue-700
-    }
-    
-    .icon-btn {
-      @apply text-xl text-slate-300 cursor-pointer hover:text-primary;
-    }
-  
-    .input-label {
-      @apply text-xs text-slate-400
-    }
 
+  body {
+    @apply bg-slate-100 dark:bg-[#0f1117] text-slate-900 dark:text-slate-100 transition-colors duration-200;
   }
-  
+
+  * {
+    @apply box-border;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 dark:bg-slate-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400 dark:bg-slate-500;
+  }
+}
+
+@layer components {
+  /* Auth form inputs */
+  .input-box {
+    @apply w-full text-sm bg-white dark:bg-[#1a1d2e] border border-slate-200 dark:border-[#2d3154] text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 px-4 py-3 rounded-xl mb-4 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all;
+  }
+
+  .btn-primary {
+    @apply w-full text-sm bg-primary hover:bg-primary-hover text-white font-medium py-3 rounded-xl my-1 transition-all duration-200 active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply text-sm bg-slate-100 dark:bg-[#222639] hover:bg-slate-200 dark:hover:bg-[#2d3154] text-slate-700 dark:text-slate-300 font-medium px-4 py-2 rounded-lg transition-all duration-200;
+  }
+
+  .btn-ghost {
+    @apply text-sm text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#222639] px-3 py-1.5 rounded-lg transition-all duration-200;
+  }
+
+  .btn-danger {
+    @apply text-sm text-red-500 hover:text-red-400 hover:bg-red-500/10 px-3 py-1.5 rounded-lg transition-all duration-200;
+  }
+
+  .icon-btn {
+    @apply text-lg text-slate-400 dark:text-slate-500 cursor-pointer hover:text-primary transition-colors duration-150;
+  }
+
+  .input-label {
+    @apply text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1;
+  }
+
+  /* Card base */
+  .note-card-base {
+    @apply relative rounded-xl border border-slate-200 dark:border-[#2d3154] p-4 transition-all duration-200 cursor-pointer;
+    @apply shadow-card-light dark:shadow-card-dark;
+    @apply hover:shadow-card-hover-light dark:hover:shadow-card-hover-dark;
+    @apply hover:-translate-y-0.5;
+  }
+
+  /* Sidebar nav item */
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-[#222639] transition-all duration-150 cursor-pointer;
+  }
+
+  .sidebar-item-active {
+    @apply bg-primary/10 dark:bg-primary/15 text-primary dark:text-primary-hover;
+  }
+
+  /* Tag pill */
+  .tag-pill {
+    @apply inline-flex items-center text-xs font-medium px-2 py-0.5 rounded-full bg-primary/10 dark:bg-primary/15 text-primary dark:text-primary-hover;
+  }
+
+  /* Markdown preview styles */
+  .markdown-body h1 { @apply text-2xl font-bold mb-3 mt-4 text-slate-900 dark:text-slate-100; }
+  .markdown-body h2 { @apply text-xl font-bold mb-2 mt-4 text-slate-900 dark:text-slate-100; }
+  .markdown-body h3 { @apply text-lg font-semibold mb-2 mt-3 text-slate-900 dark:text-slate-100; }
+  .markdown-body p { @apply mb-3 text-slate-700 dark:text-slate-300 leading-relaxed; }
+  .markdown-body strong { @apply font-bold text-slate-900 dark:text-slate-100; }
+  .markdown-body em { @apply italic; }
+  .markdown-body code { @apply font-mono text-sm bg-slate-100 dark:bg-slate-800 text-primary dark:text-primary-hover px-1.5 py-0.5 rounded; }
+  .markdown-body pre { @apply bg-slate-900 dark:bg-[#0a0d14] text-slate-300 p-4 rounded-xl text-sm font-mono overflow-x-auto mb-3; }
+  .markdown-body ul { @apply list-disc list-inside mb-3 space-y-1 text-slate-700 dark:text-slate-300; }
+  .markdown-body ol { @apply list-decimal list-inside mb-3 space-y-1 text-slate-700 dark:text-slate-300; }
+  .markdown-body li { @apply leading-relaxed; }
+  .markdown-body blockquote { @apply border-l-4 border-primary/40 pl-4 italic text-slate-500 dark:text-slate-400 mb-3; }
+  .markdown-body hr { @apply border-slate-200 dark:border-[#2d3154] my-4; }
+  .markdown-body a { @apply text-primary dark:text-primary-hover underline; }
+}
