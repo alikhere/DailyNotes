@@ -1,75 +1,48 @@
-import React, { useState } from "react"
+import { MdSunny, MdNightlight, MdMenu } from "react-icons/md"
 import SearchBar from "./SearchBar/SearchBar"
 import ProfileInfo from "./Cards/ProfileInfo"
-import { Link, useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { toast } from "react-toastify"
-const API_URL = import.meta.env.VITE_API_URL;
-import {
-  signInSuccess,
-  signoutFailure,
-  signoutStart,
-} from "../redux/user/userSlice"
-import axios from "axios"
+import { useTheme } from "../context/ThemeContext"
 
-const Navbar = ({ userInfo, onSearchNote, handleClearSearch }) => {
-  const [searchQuery, setSearchQuery] = useState("")
-
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-
-  const handleSearch = () => {
-    if (searchQuery) {
-      onSearchNote(searchQuery)
-    }
-  }
-
-  const onClearSearch = () => {
-    setSearchQuery("")
-    handleClearSearch()
-  }
-
-  const onLogout = async () => {
-    try {
-      dispatch(signoutStart())
-
-      const res = await axios.get(`${API_URL}/api/auth/signout`, {
-        withCredentials: true,
-      })
-
-      if (res.data.success === false) {
-        dispatch(signoutFailure(res.data.message))
-        toast.error(res.data.message)
-        return
-      }
-
-      toast.success(res.data.message)
-      dispatch(signInSuccess())
-      navigate("/login")
-    } catch (error) {
-      toast.error(error.message)
-      dispatch(signoutFailure(error.message))
-    }
-  }
+const Navbar = ({ userInfo, searchQuery, setSearchQuery, onSidebarToggle }) => {
+  const { isDark, toggleTheme } = useTheme()
 
   return (
-    <div className="bg-white flex items-center justify-between px-6 py-2 drop-shadow">
-      <Link to={"/"}>
-        <h2 className="text-xl font-medium text-black py-2">
-          <span className="text-slate-500">Daily</span>
-          <span className="text-slate-900">Notes</span>
-        </h2>
-      </Link>
+    <header className="h-14 shrink-0 flex items-center gap-3 px-4 bg-white dark:bg-[#13151f] border-b border-slate-200 dark:border-[#2d3154] z-10">
+      {/* Mobile sidebar toggle */}
+      <button
+        onClick={onSidebarToggle}
+        className="lg:hidden p-2 rounded-lg text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#222639] transition-colors"
+      >
+        <MdMenu className="text-xl" />
+      </button>
 
-      <SearchBar
-        value={searchQuery}
-        onChange={({ target }) => setSearchQuery(target.value)}
-        handleSearch={handleSearch}
-        onClearSearch={onClearSearch}
-      />
+      {/* Search — centered, live search handled by Home */}
+      <div className="flex-1 max-w-md mx-auto">
+        <SearchBar
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          onClear={() => setSearchQuery("")}
+        />
+      </div>
 
-      <ProfileInfo userInfo={userInfo} onLogout={onLogout} />
-    </div>
+      <div className="flex items-center gap-2">
+        {/* Theme toggle */}
+        <button
+          onClick={toggleTheme}
+          title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+          className="p-2 rounded-lg text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#222639] transition-all"
+        >
+          {isDark ? (
+            <MdSunny className="text-xl text-yellow-400" />
+          ) : (
+            <MdNightlight className="text-xl" />
+          )}
+        </button>
+
+        {/* Profile */}
+        <ProfileInfo userInfo={userInfo} />
+      </div>
+    </header>
   )
 }
 
