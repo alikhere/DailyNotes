@@ -86,3 +86,9 @@ Run DailyNotes locally using either of the following methods:
 ## CI/CD Pipeline
 
 ![ci-cd](./docs/ci-cd.png)
+
+---
+
+## Contributing
+
+Contributions are welcome! See [CONTRIBUTING.md](./CONTRIBUTING.md) for a full guide — forking, local setup, branch naming, commit style, and opening a pull request.
